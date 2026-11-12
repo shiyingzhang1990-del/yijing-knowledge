@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>《易经》是什么？· 问题导向的知识卡片</title>
+<style>
+:root{
+  --paper:#f7f1e3; --paper2:#efe6cf; --ink:#2b231a; --sub:#7a6a55;
+  --line:#e4d8bf; --cinnabar:#b03a2e; --cinnabar2:#8f2f24;
+  --gold:#b8923a; --gold-soft:#f3e6c4;
+  --e:#b03a2e; --p:#8f6a1e; --i:#2e6b5c; --c:#4a3f7a;
+  --radius:16px;
+  --shadow:0 1px 3px rgba(60,45,20,.08),0 4px 16px rgba(60,45,20,.06);
+  --serif:"Noto Serif SC","Songti SC","STSong","SimSun",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  font-family:var(--sans); background:var(--paper); color:var(--ink);
+  font-size:16px; line-height:1.75; -webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(circle at 15% 10%, rgba(184,146,58,.05), transparent 40%),
+    radial-gradient(circle at 85% 90%, rgba(176,58,46,.04), transparent 40%);
+}
+.wrap{max-width:780px;margin:0 auto;padding:0 14px 120px}
+
+/* header */
+header{position:sticky;top:0;z-index:60;background:rgba(247,241,227,.92);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:14px 16px 10px}
+.brand{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.brand .tri{font-size:22px;color:var(--cinnabar)}
+.brand h1{font-family:var(--serif);font-size:21px;margin:0;letter-spacing:1px;font-weight:800}
+.brand .en{font-size:12px;color:var(--sub);letter-spacing:2px}
+header .sub{font-size:12.5px;color:var(--sub);margin:4px 0 10px}
+.nav{display:flex;gap:6px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{flex:0 0 auto;text-decoration:none;border:1px solid var(--line);background:#fbf6ea;
+  color:var(--sub);padding:7px 13px;border-radius:999px;font-size:13px;white-space:nowrap}
+.nav a.on{background:var(--ink);border-color:var(--ink);color:#f7f1e3;font-weight:600}
+.nav a.refs{color:var(--cinnabar);border-color:#e2c9c3;background:#fbf1ef}
+
+/* hero */
+.hero{text-align:center;padding:34px 8px 10px}
+.hero .bagua{font-size:40px;letter-spacing:6px;color:var(--gold);margin-bottom:8px}
+.hero h2{font-family:var(--serif);font-size:28px;margin:0 0 10px;letter-spacing:2px}
+.hero p.lead{font-size:15px;color:var(--sub);max-width:560px;margin:0 auto 22px}
+.epic-line{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:0 auto 6px}
+.epic-chip{display:inline-flex;align-items:center;gap:6px;border-radius:10px;padding:7px 12px;
+  font-size:13px;font-weight:700;color:#fff;box-shadow:var(--shadow)}
+.epic-chip b{font-size:17px}
+.epic-flow{font-size:12px;color:var(--sub);margin-top:10px}
+
+/* act section */
+.act{margin-top:34px}
+.act-head{display:flex;align-items:center;gap:12px;margin-bottom:14px;padding:14px 16px;
+  border-radius:var(--radius);color:#fff;box-shadow:var(--shadow)}
+.act-head .glyph{font-size:30px;line-height:1}
+.act-head .meta b{display:block;font-size:19px;font-family:var(--serif);letter-spacing:1px}
+.act-head .meta .en{font-size:11px;opacity:.85;letter-spacing:2px}
+.act-head .tagline{margin-left:auto;font-size:13px;font-weight:600;opacity:.95;
+  border:1px solid rgba(255,255,255,.4);border-radius:999px;padding:3px 12px}
+
+/* dig card */
+.dig{background:#fffdf6;border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);margin-bottom:16px;overflow:hidden}
+.dig-top{padding:18px 18px 14px}
+.dig-top .qno{font-size:12px;color:var(--sub);font-weight:700;letter-spacing:1px;margin-bottom:8px}
+.dig-top .qno .bar{display:inline-block;width:26px;height:3px;border-radius:2px;vertical-align:middle;margin-right:8px}
+.dig-top .q{font-family:var(--serif);font-size:19px;font-weight:700;line-height:1.5;margin:0 0 8px}
+.dig-top .hint{font-size:13.5px;color:var(--sub);font-style:italic;margin:0}
+.dig-top .hint::before{content:"💭 ";font-style:normal}
+.dig-btn{display:block;width:calc(100% - 36px);margin:0 18px 16px;padding:12px;border:1px dashed var(--gold);
+  background:var(--gold-soft);color:#7a5a1a;border-radius:12px;font-size:14.5px;font-weight:600;cursor:pointer}
+.dig-btn:hover{background:#eeda9e}
+.dig-btn[disabled]{opacity:.5;cursor:default}
+
+/* layers */
+.layers{padding:0 18px}
+.layer{display:none;margin-bottom:12px;padding:14px 16px;border-radius:12px;background:#faf6ec;
+  border:1px solid var(--line);border-left:4px solid var(--gold);animation:fade .4s ease}
+.layer.show{display:block}
+.layer.depth1{border-left-color:#d9b86a}
+.layer.depth2{border-left-color:#c9973a}
+.layer.depth3{border-left-color:var(--cinnabar);background:#fbf0ec;border-color:#e8d3ca}
+.layer .lbl{display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:800;
+  letter-spacing:1px;margin-bottom:7px}
+.layer .lbl .dot{width:9px;height:9px;border-radius:50%}
+.layer.depth1 .lbl{color:#8a6a1f}.layer.depth1 .dot{background:#d9b86a}
+.layer.depth2 .lbl{color:#a8781d}.layer.depth2 .dot{background:#c9973a}
+.layer.depth3 .lbl{color:var(--cinnabar)}.layer.depth3 .dot{background:var(--cinnabar)}
+.layer p{margin:0;font-size:14.5px;color:#3a2f22;text-align:justify}
+.layer p b{color:var(--ink)}
+.layer .refs{margin-top:9px;font-size:12.5px;color:var(--sub)}
+.layer .refs a{color:var(--cinnabar);text-decoration:none;margin-right:3px}
+.layer .refs a:hover{text-decoration:underline}
+.dig-next{display:block;width:calc(100% - 36px);margin:0 18px 16px;padding:11px;border:1px solid var(--line);
+  background:#fff;color:var(--ink);border-radius:12px;font-size:14px;font-weight:600;cursor:pointer}
+.dig-next:hover{border-color:var(--gold)}
+.dig-next[disabled]{display:none}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+/* references */
+.refs-sec{margin-top:40px}
+.refs-sec h2{font-family:var(--serif);font-size:22px;letter-spacing:1px;
+  display:flex;align-items:center;gap:8px;margin:0 0 6px}
+.refs-sec .note{font-size:12.5px;color:var(--sub);margin:0 0 16px}
+.refs-sec ol{margin:0;padding:0;list-style:none}
+.refs-sec li{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);
+  font-size:13px;color:#4a3d2c;line-height:1.6}
+.refs-sec li:last-child{border-bottom:none}
+.refs-sec .rid{color:var(--cinnabar);font-weight:700;font-size:12px;flex-shrink:0;min-width:26px}
+.refs-sec li .cite{word-break:break-word}
+.foot{text-align:center;color:var(--sub);font-size:12px;margin-top:40px;line-height:1.8}
+@media(min-width:600px){.dig-top .q{font-size:21px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="brand">
+    <span class="tri">☯</span>
+    <h1 id="h1"></h1>
+  </div>
+  <p class="sub" id="hsub"></p>
+  <div class="nav" id="nav"></div>
+</header>
+
+<div class="hero">
+  <div class="bagua" id="bagua"></div>
+  <h2 id="heroTitle"></h2>
+  <p class="lead" id="heroLead"></p>
+  <div class="epic-line" id="epicChips"></div>
+  <div class="epic-flow" id="epicFlow"></div>
+</div>
+
+<div id="acts"></div>
+
+<section class="refs-sec" id="refsSec">
+  <h2 id="refsTitle"></h2>
+  <p class="note" id="refsNote"></p>
+  <ol id="refsList"></ol>
+</section>
+
+<div class="foot" id="foot"></div>
+</div>
+
+<script>
+const DATA = __DATA_JSON__;
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+// header
+$('#h1').textContent = DATA.title;
+$('#hsub').textContent = DATA.subtitle;
+$('#bagua').textContent = DATA.hero.bagua;
+$('#heroTitle').textContent = DATA.hero.title;
+$('#heroLead').textContent = DATA.hero.lead;
+$('#refsTitle').textContent = DATA.refs.title;
+$('#refsNote').textContent = DATA.refs.note;
+$('#foot').innerHTML = DATA.footer;
+
+// nav
+$('#nav').innerHTML =
+  DATA.acts.map(a=>`<a href="#act-${a.key}" data-k="${a.key}">${esc(a.glyph)} ${esc(a.name)}</a>`).join('') +
+  `<a class="refs" href="#refsSec">📚 ${esc(DATA.refs.nav)}</a>`;
+
+// epic chips
+$('#epicChips').innerHTML = DATA.acts.map(a=>
+  `<span class="epic-chip" style="background:${a.color}"><b>${esc(a.key)}</b>${esc(a.name)} · ${esc(a.tagline)}</span>`).join('');
+$('#epicFlow').textContent = DATA.hero.flow;
+
+// acts
+$('#acts').innerHTML = DATA.acts.map((a,ai)=>{
+  const qs = a.questions.map((q,qi)=>{
+    const gid = `q-${ai}-${qi}`;
+    const layers = q.layers.map((L,li)=>{
+      const refs = L.refs.map(r=>`<a href="#ref-${r}">[${r}]</a>`).join('');
+      return `<div class="layer depth${li+1}" id="${gid}-l${li}">
+        <div class="lbl"><span class="dot"></span>${esc(L.label)}</div>
+        <p>${esc(L.text)}</p>
+        ${refs?`<div class="refs">文献：${refs}</div>`:''}
+      </div>`;
+    }).join('');
+    return `<div class="dig" id="${gid}">
+      <div class="dig-top">
+        <div class="qno"><span class="bar" style="background:${a.color}"></span>第 ${ai+1} 幕 · 第 ${qi+1} 问</div>
+        <div class="q">${esc(q.q)}</div>
+        ${q.hint?`<p class="hint">${esc(q.hint)}</p>`:''}
+      </div>
+      <button class="dig-btn" id="${gid}-btn" onclick="dig('${gid}')">🔍 开始挖掘</button>
+      <div class="layers">${layers}</div>
+    </div>`;
+  }).join('');
+  return `<section class="act" id="act-${a.key}">
+    <div class="act-head" style="background:${a.color}">
+      <span class="glyph">${esc(a.glyph)}</span>
+      <div class="meta"><b>${esc(a.name)}</b><span class="en">${esc(a.en)}</span></div>
+      <span class="tagline">${esc(a.tagline)}</span>
+    </div>
+    ${qs}
+  </section>`;
+}).join('');
+
+// references
+$('#refsList').innerHTML = DATA.refs.items.map(r=>
+  `<li id="ref-${r.id}"><span class="rid">[${r.id}]</span><span class="cite">${esc(r.cite)}</span></li>`).join('');
+
+// dig interaction
+function dig(gid){
+  const root = document.getElementById(gid);
+  const btn = document.getElementById(gid+'-btn');
+  const layers = root.querySelectorAll('.layer');
+  let shown = root.querySelectorAll('.layer.show').length;
+  if(shown === 0){
+    layers[0].classList.add('show');
+    btn.textContent = '再深一层 ↓';
+    btn.setAttribute('onclick', `dig('${gid}')`);
+  } else if(shown < layers.length){
+    layers[shown].classList.add('show');
+    if(shown+1 === layers.length){ btn.textContent = '已抵达本质'; btn.disabled = true; }
+    else btn.textContent = '再深一层 ↓';
+  }
+}
+
+// scroll-spy for nav
+const navLinks = document.querySelectorAll('#nav a[data-k]');
+const actEls = [...document.querySelectorAll('.act')];
+const spy = new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      const k = e.target.id.replace('act-','');
+      navLinks.forEach(a=>a.classList.toggle('on', a.dataset.k===k));
+    }
+  });
+},{rootMargin:'-20% 0px -70% 0px'});
+actEls.forEach(el=>spy.observe(el));
+</script>
+</body>
+</html>
